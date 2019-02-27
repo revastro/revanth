@@ -1,0 +1,195 @@
+<html>
+
+<head>
+    <title>Pagination</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .pag {
+            display: inline-block;
+        }
+        
+        .txt {
+            text-align: center;
+        }
+        
+        .pag a {
+            text-decoration: none;
+            color: black;
+            float: left;
+            padding: 7px 16px;
+            border: 1px solid;
+            border-radius: 5%;
+            margin: 0 4px;
+        }
+        
+        .pag a:hover {
+            color: white;
+            border-radius: 5px;
+            background-color: black;
+        }
+        
+        .grid {
+            display: inline;
+            display: grid;
+            grid-column-gap: 50px;
+            grid-template-columns: auto auto auto;
+            padding: 10px;
+            margin: 5px;
+            display: none;
+        }
+        
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+            display: inline-block;
+            margin-left: 9%;
+        }
+        
+        #a {
+            border-radius: 10px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="txt">
+        <div class="pag">
+            <a href="#" onclick="Prev()">&laquo;</a>
+            <a href="#" id="number">1</a>
+            <a href="#" onclick="Next()">&raquo;</a>
+        </div>
+    </div>
+    <div class="grid ">
+        <h1>Page 1</h1>
+        <div class="grid-item">
+            <p>Id:10</p>
+            <p>Firstname:Byron</p>
+            <p>Lastname:Fields</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/russoedu/128.jpg">
+        </div>
+        <div class="grid-item">
+            <p>Id:11</p>
+            <p>Firstname:George</p>
+            <p>Lastname:Edwards</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/mrmoiree/128.jpg">
+        </div>
+        <div class="grid-item">
+            <p>Id:12 </p>
+            <p>Firstname:Rachel</p>
+            <p>Lastname:Howell</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/hebertialmeida/128.jpg">
+        </div>
+
+    </div>
+    <div class="grid ">
+        <h1>Page 2</h1>
+        <div class="grid-item">
+            <p>Id:11</p>
+            <p>Firstname:George</p>
+            <p>Lastname:Edwards</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/mrmoiree/128.jpg">
+        </div>
+        <div class="grid-item">
+            <p>Id:10</p>
+            <p>Firstname:Byron</p>
+            <p>Lastname:Fields</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/russoedu/128.jpg">
+        </div>
+
+        <div class="grid-item">
+            <p>Id:12 </p>
+            <p>Firstname:Rachel</p>
+            <p>Lastname:Howell</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/hebertialmeida/128.jpg">
+        </div>
+
+    </div>
+    <div class="grid">
+        <h1>Page 3</h1>
+        <div class="grid-item">
+            <p>Id:11</p>
+            <p>Firstname:George</p>
+            <p>Lastname:Edwards</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/mrmoiree/128.jpg">
+        </div>
+        <div class="grid-item">
+            <p>Id:12 </p>
+            <p>Firstname:Rachel</p>
+            <p>Lastname:Howell</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/hebertialmeida/128.jpg">
+        </div>
+        <div class="grid-item">
+            <p>Id:10</p>
+            <p>Firstname:Byron</p>
+            <p>Lastname:Fields</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/russoedu/128.jpg">
+        </div>
+
+
+    </div>
+    <div class="grid ">
+        <h1>Page 4</h1>
+        <div class="grid-item">
+            <p>Id:11</p>
+            <p>Firstname:George</p>
+            <p>Lastname:Edwards</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/mrmoiree/128.jpg">
+        </div>
+        <div class="grid-item">
+            <p>Id:10</p>
+            <p>Firstname:Byron</p>
+            <p>Lastname:Fields</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/russoedu/128.jpg">
+        </div>
+
+        <div class="grid-item">
+            <p>Id:12 </p>
+            <p>Firstname:Rachel</p>
+            <p>Lastname:Howell</p>
+            <p>Avatar:</p><img id="a" src="https://s3.amazonaws.com/uifaces/faces/twitter/hebertialmeida/128.jpg">
+        </div>
+
+    </div>
+
+    <script>
+        var num = 0;
+        var r = $('.grid').length;
+
+        function showdiv() {
+            $(".grid").hide();
+            $(".grid:eq(" + num + ")").show();
+            document.getElementById("number").innerHTML = num + 1;
+        }
+        showdiv();
+
+        function Next() {
+            if (num == $(".grid").length - 1) {
+                num = 0;
+            } else {
+                num++;
+            }
+            showdiv();
+        }
+
+        function Prev() {
+            if (num == 0) {
+                num = $(".grid").length - 1
+            } else {
+                num--;
+            }
+            showdiv();
+        }
+    </script>
+
+
+
+</body>
+
+</html>

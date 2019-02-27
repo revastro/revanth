@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <title>
+        Countdown for ICC Worldcup
+    </title>
+    <style>
+        .C {
+            text-align: center;
+            font-size: 50px;
+            display: inline;
+            color: red;
+            background-color: aqua;
+        }
+        
+        body {
+            text-align: center;
+        }
+        
+        .C div {
+            display: inline;
+            background-color: black;
+            align-content: center;
+        }
+        
+        .C div>span {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Countdown</h1>
+    <p style="opacity: .5;">Format 1 and 2</p>
+    <div id="event"></div>
+    <div class="C">
+        <div>
+            <span id="months"></span>
+        </div>
+        <div>
+            <span id="days"></span>
+        </div>
+        <div>
+            <span id="hours"></span>
+        </div>
+        <div>
+            <span id="minutes"></span>
+        </div>
+        <div>
+            <span id="seconds"></span>
+        </div>
+    </div>
+
+
+
+    <script>
+        var deadline = new Date("May 30,2019,00:00:01").getTime();
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var t = deadline - now;
+            var days = Math.floor(t / (1000 * 60 * 60 * 24));
+            var months = Math.floor(days / 30);
+            var day = days % 30;
+            var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((t % (1000 * 60)) / 1000);
+            if (months == 0 && days < 2) {
+                var hour = (days * 24) + hours;
+
+                document.getElementById("hours").innerHTML = hour + "hours  ";
+                document.getElementById("minutes").innerHTML = minutes + "minutes  ";
+                document.getElementById("seconds").innerHTML = seconds + "seconds ";
+
+            } else {
+
+                document.getElementById("months").innerHTML = months + "months ";
+                document.getElementById("days").innerHTML = day + "days ";
+                document.getElementById("hours").innerHTML = hours + "hours  ";
+            }
+
+
+            if (t <= 0) {
+                clearInterval(x);
+                document.getElementById("event").innerHTML = "Event Started";
+            }
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
